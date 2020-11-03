@@ -4,10 +4,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 )
 
 func main() {
-	resp, err := http.Get("https://ikaruga.org")
+	values := url.Values{
+		"query": {"hello world"},
+	}
+	resp, err := http.Get("https://ikaruga.org" + "?" + values.Encode())
 	if err != nil {
 		panic(err)
 	}
